@@ -26,7 +26,8 @@ import {
   Printer,
   FileText,
   MapPin,
-  Linkedin
+  Linkedin,
+  Info
 } from 'lucide-react';
 
 const THEMES = {
@@ -356,7 +357,7 @@ const App: React.FC = () => {
             )}
 
             {state.result.mode === AgentMode.CHECK && (
-              <div className="animate-in fade-in slide-in-from-bottom-10 duration-700 space-y-8">
+              <div className="animate-in fade-in slide-in-from-bottom-10 duration-700 space-y-12">
                 <div className="bg-white p-12 rounded-[3rem] shadow-2xl border border-slate-50">
                   <div className="flex items-center gap-6 mb-12">
                     <div className="p-6 bg-orange-100 text-orange-600 rounded-3xl"><AlertCircle size={40} /></div>
@@ -365,7 +366,7 @@ const App: React.FC = () => {
                       <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">Strategic Learning Roadmap</p>
                     </div>
                   </div>
-                  <div className="grid grid-cols-1 gap-8">
+                  <div className="grid grid-cols-1 gap-8 mb-16">
                     {state.result.skill_gaps?.map((gap, idx) => (
                       <div key={idx} className="bg-slate-50 rounded-[2.5rem] p-10 border border-slate-100 hover:shadow-xl transition-all">
                         <div className="flex flex-col md:flex-row justify-between md:items-center mb-8 gap-4">
@@ -393,6 +394,28 @@ const App: React.FC = () => {
                       </div>
                     ))}
                   </div>
+
+                  {state.result.grounding_sources && state.result.grounding_sources.length > 0 && (
+                    <div className="border-t border-slate-100 pt-12">
+                      <div className="flex items-center gap-3 mb-6">
+                        <Info size={20} className="text-slate-400" />
+                        <h4 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400">Research Sources</h4>
+                      </div>
+                      <div className="flex flex-wrap gap-4">
+                        {state.result.grounding_sources.map((source, sIdx) => (
+                          <a 
+                            key={sIdx} 
+                            href={source.uri} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 bg-slate-50 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs font-bold text-slate-600 transition-colors border border-slate-100"
+                          >
+                            {source.title} <ExternalLink size={12} />
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
