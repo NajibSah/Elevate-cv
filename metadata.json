@@ -1,0 +1,5 @@
+{
+  "name": "ElevateCV: Dual-Mode Career Agent",
+  "description": "An AI-powered career assistant that helps users generate CV foundations based on goals or identify skill gaps between their profile and job descriptions, complete with personalized course recommendations.",
+  "requestFramePermissions": []
+}
